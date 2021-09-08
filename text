@@ -1,0 +1,11 @@
+"install": "cd client && yarn install && cd ..",
+"clean": "rimraf build/",
+"lint": "tslint -c tslint.json -p tsconfig.json --fix",
+"build:client": "cd client && yarn build && cd ..",
+"build:server": "yarn clean && yarn lint && tsc",
+"build": "yarn build:server && yarn build:client && mv ./client/build ./build/public",
+"start": "MODE=prod node ./build",
+"dev:client": "cd client && yarn start && cd ..",
+"dev:start": "yarn lint && ts-node --files ./src/index.ts",
+"dev:server": "nodemon --watch src -e ts --exec yarn dev:start",
+"dev": "concurrently \"yarn dev:client\" \"yarn dev:server\""
