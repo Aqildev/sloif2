@@ -2,15 +2,15 @@ FROM node:lts
 # FROM node:10.16.0-jessie
 EXPOSE 3000
 WORKDIR /data
-RUN groupadd -r openiapuser && useradd -r -g openiapuser -G audio,video openiapuser \
-    && mkdir -p /home/openiapuser/Downloads \
-    && chown -R openiapuser:openiapuser /home/openiapuser \
-    && chown -R openiapuser:openiapuser /data/
+RUN groupadd -r aqil755user && useradd -r -g aqil755user -G audio,video aqil755user \
+    && mkdir -p /home/aqil755user/Downloads \
+    && chown -R aqil755user:aqil755user /home/aqil755user \
+    && chown -R aqil755user:aqil755user /data/
 
-COPY --chown=openiapuser:openiapuser package.json ./package.json
+COPY --chown=aqil755user:aqil755user package.json ./package.json
 RUN npm install --only=prod
 # RUN npm install --production
 # RUN npm install --force
-COPY --chown=openiapuser:openiapuser dist ./
+COPY --chown=aqil755user:aqil755user dist ./
 
-ENTRYPOINT ["/usr/local/bin/node", "--inspect=0.0.0.0:5858", "server/index.js"]
+ENTRYPOINT ["/usr/local/bin/node", "--inspect=0.0.0.0:5858", "index.js"]
