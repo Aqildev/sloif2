@@ -32,87 +32,32 @@ export default function DealEdit(props) {
     const History=useHistory()
     console.log(data)
     console.log(props.location)
-    // data.mark=data.mark ? data.mark : null
-    // data.move=data.move ? data.move : null
-    // data.answer=data.answer ? data.answer : null
-    // data.category=data.category ? data.category : null
-    // data.categories=data.categories?data.categories:[]
-
     const classes = useStyles();
     const [dealdata, setDealdata] = useState()
-    const [mark, setMark] = useState(data ? data.mark?data.mark : false:false)
-    const [move, setMove] = useState(data?data.move ? data.move : null:null)
-    const [answer, setAnswer] = useState(data ?data.answer ? data.answer : null :null)
-    const [category, setCategory] = useState(data ? data.category ? data.category : null:null)
-    let answers = ['Colleague', 'responsible', 'no answer', 'answering machine']
-    let [addCategory, setAddCategory] = useState()
-    let [categories, setCategories]= useState(data ?data.categories?data.categories:[] :[])
-    console.log(mark,move,answer,category)
-    // let mark, move, answer, category;
-    // let addCategory
-    // useEffect(() => {
-    //     console.log("useeffect:",data)
-    //     if(data)
-    //     {
-    //     data.mark=data.mark ? data.mark : false
-    //     data.move=data.move ? data.move : null
-    //     data.answer=data.answer ? data.answer : null
-    //     data.category=data.category ? data.category : null
-    //     data.categories=data.categories?data.categories:[]
-    //     console.log(data)
-    //     setMark(data.mark)
-    //     setMove(data.move)
-    //     setAnswer(data.answer)
-    //     setCategory(data.category)
-    //     setCategories(data.categories)
-    //         console.log(mark,move,answer,category)
-    
-    
-    //     }
-    
-    
-    //     // categories=data.categories?data.categories:[]
-    //     // console.log(categories)
-
-    //     // data.mark=mark;
-    //     // data.move=move;
-    //     // data.answer=data.answer
-    //     // data.category=category;
-    //     // console.log(mark,move,answer,category)
-    // },[])
-    const handleChange = (event) => {
-        // category = event.target.value
-        setCategory(event.target.value);
-    };
+    const [mark, setMark] = useState(data ? data._mark?data._mark : false:false)
+    const [move, setMove] = useState(data?data._move ? data._move : null:null)
     const handleChangeCheck = (event) => {
         // mark = event.target.checked
         setMark(event.target.checked);
     };
     const handleSubmit = async() => {
-        data.mark=mark;
-        data.move=move;
-        data.answer=answer
-        data.category=category;
-        data.categories=categories
+        data._mark=mark;
+        data._move=move;
         console.log(data)
         await setDealdata(data)
 
         console.log(dealdata)
         console.log(await UpdateCall('entities',null,data))
+
+        History.push({ 
+            pathname: '/deals',
+            data:propdata
+           });
+       
+
         // console.log(mark, move, answer, category, addCategory)
 
     }
-    const handleAdd = (event) => {
-        let temp = categories
-        // temp.push(addCategory)
-        setCategories(categories =>[...categories,addCategory])
-        // setAddCategory('hi')
-        // categories.push(addCategory)
-        console.log(categories)
-        // console.log(data)
-        // console.log(dealdata)
-    }
-
     if (data) {
         return (
 
@@ -124,43 +69,6 @@ export default function DealEdit(props) {
                         label="Client Said Something"
                     />
                     {/* </FormGroup> */}
-                    <TextField
-                        id=""
-                        select
-                        label="Select"
-                        value={answer}
-                        onChange={(e) => setAnswer(e.target.value)}
-                        helperText="How the answer is recieved"
-                    >
-                        {answers.map((option) => (
-                            <MenuItem key={option.value} value={option}>
-                                {option}
-                            </MenuItem>
-                        ))}
-                    </TextField>
-                    <div>
-                        <TextField
-                            id="Categories"
-                            select
-                            label="Select"
-                            value={category}
-                            onChange={(e) => setCategory(e.target.value)}
-                            helperText=""
-                        >
-                            {categories.map((option) => {
-                                console.log(option)
-
-                                return(
-                                <MenuItem key={option.value} value={option}>
-                                    {option}
-                                </MenuItem>
-                            )})}
-                        </TextField>
-                        <TextField id="AddCategory" label="Outlined" variant="outlined" onChange={(e) => setAddCategory(e.target.value)} />
-                        <Button color="primary" variant="contained" onClick={(e) => handleAdd(e)} >Add</Button>
-
-
-                    </div>
                     <FormControl>
                     </FormControl>
                     <FormControl className={classes.field}>
@@ -171,7 +79,8 @@ export default function DealEdit(props) {
                         </RadioGroup>
                     </FormControl>
                     {/* <Link to={{ pathname: '/deals' }}><Button color="primary" variant="contained" onClick={handleSubmit} >Submit</Button></Link> */}
-                    <Link to={{ pathname: '/deals',data:propdata }}><Button color="primary" variant="contained" onClick={handleSubmit} >Submit</Button></Link>
+                    {/* <Link to={{ pathname: '/deals',data:propdata }}><Button color="primary" variant="contained" onClick={handleSubmit} >Submit</Button></Link> */}
+                    <Button color="primary" variant="contained" lablel="Submit" onClick={handleSubmit} >Submit</Button>
                     <Link to={{ pathname: '/deals',data:propdata }}><Button color="primary" variant="contained">Cancel</Button></Link>
                 </form>
             </Container>

@@ -18,7 +18,7 @@ export default function Deal(props) {
     const [deals, setdeals] = useState()
     const [page, setPage] = useState(0)
     const getdeal = async () => {
-        let data = await QueryCall('pipedrive',{"_type":"deal"} ,page,20)
+        let data = await QueryCall('entities',{"_type":"deal"} ,page,20)
 
         setdeals(data)
 

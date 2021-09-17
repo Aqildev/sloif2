@@ -8,6 +8,7 @@ import Users from './component/Users/Users';
 import Nav from './component/Nav';
 import Deal from './component/deals/Deal';
 import Activities from './component/Activities/Activities';
+import ActivitiesEdit from './component/Activities/ActivitiesEdit';
 import Organizations from './component/Organization/Oraganizations';
 import Stages from './component/Stages/Stages';
 import DealDetails from './component/deals/DealDetails';
@@ -287,6 +288,7 @@ function App() {
 			  <Route path='/DealDetail' component={DealDetails}/>
 			  <Route path='/DealEdit' component={DealEdit}/>
 			  <Route path='/activities' component={Activities}/>
+			  <Route path='/ActivitiesEdit' component={ActivitiesEdit}/>
 			  <Route path='/organizations' component={Organizations}/>
 			  <Route path='/stages' component={Stages}/>
 			  <Route path='/report' component={Reports}/>

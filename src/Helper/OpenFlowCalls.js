@@ -1,5 +1,5 @@
 import { NoderedUtil } from "@openiap/openflow-api"
-export const QueryCall=async(collection,query={},page=null,records=null,projection=null,jwt)=>{
+export const QueryCall=async(collection,query={},page=0,records=20,projection=null,jwt)=>{
     console.log(jwt)
     let data=await NoderedUtil.Query(
         collection,
